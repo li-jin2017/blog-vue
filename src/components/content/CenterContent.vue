@@ -1,15 +1,15 @@
 <template>
   <div class="content">
-    <el-row :gutter="30">
+    <el-row :gutter="20">
       <el-col :span="14">
         <RotaryImage/>
       </el-col>
-      <el-col :span="8">
-        <el-col :span="24">
-          <img :src="images[0].src" class="t_image">
+      <el-col :span="10">
+        <el-col :span="24" class="image-item">
+          <img :src="images[0].src" class="t-image">
         </el-col>
-        <el-col :span="24">
-          <img :src="images[1].src" class="t_image t_image_buttom">
+        <el-col :span="24" class="image-item">
+          <img :src="images[1].src" class="t-image">
         </el-col>
       </el-col>
     </el-row>
@@ -27,8 +27,8 @@ import RotaryImage from "./RotaryImage.vue";
 })
 export default class CenterContent extends Vue {
   private images: any[] = [
-    { src: require("../../assets/images/t03.jpg") },
-    { src: require("../../assets/images/t01.jpg") },
+    { src: require("../../assets/images/toppic01.jpg") },
+    { src: require("../../assets/images/toppic02.jpg") },
     ];
 }
 </script>
@@ -38,14 +38,13 @@ export default class CenterContent extends Vue {
   padding: 20px 100px 20px 100px;
 }
 
-.t_image {
-  width: 400px;
-  height: 165px;
-  border-radius: 3px;
+.image-item {
+  height: 218px;
 }
 
-.t_image_buttom {
-  margin-top: 12px;
+.t-image {
+  height: 200px;
+  width: 100%;
 }
 
 </style>

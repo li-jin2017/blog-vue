@@ -1,6 +1,6 @@
 <template>
 
-  <el-carousel trigger="click" height="350px" class="rotary-image">
+  <el-carousel trigger="click" height="420px" class="rotary-image">
     <el-carousel-item v-for="image in images" :key="image.key">
       <img :src="image.src">
       <div class="rotary-title">{{image.title}}</div>
