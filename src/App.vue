@@ -1,24 +1,26 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
+   
+    <IndexNav/>
+    <Footer/>
 
-    <el-row>
-      <el-button>按钮</el-button>
-    </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import IndexNav from './components/head/IndexNav.vue';
+import Footer from './components/footer/Footer.vue';
 
-@Component({
+@Component ({
   components: {
-    HelloWorld,
-  },
+      IndexNav,
+      Footer
+  }
 })
-export default class App extends Vue {}
+
+export default class App extends Vue {
+}
 </script>
 
 <style>
@@ -26,8 +28,11 @@ export default class App extends Vue {}
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
 }
 </style>
