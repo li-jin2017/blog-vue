@@ -17,19 +17,15 @@ export default class Footer extends Vue {}
 
 <style scoped>
 .footer {
-  width: 100%;
   background-color: #333;
-  height: 60px;
-  bottom: 0px;
+  height: 80px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 .footer-tip {
   color: #a5a4a4;
   font-size: 16px;
-  line-height: 60px;
+  line-height: 80px;
 }
 </style>
 

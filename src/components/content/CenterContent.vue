@@ -13,23 +13,38 @@
         </el-col>
       </el-col>
     </el-row>
+
+    <el-row>
+      <el-col :span="18">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>TOP5</span>
+          </div>
+          <div v-for="i in 5" :key="i" class="item card-row">
+            <ArticleCard/>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import RotaryImage from "./RotaryImage.vue";
+import ArticleCard from "./ArticleCard.vue";
 
 @Component({
   components: {
-    RotaryImage
+    RotaryImage,
+    ArticleCard
   }
 })
 export default class CenterContent extends Vue {
   private images: any[] = [
     { src: require("../../assets/images/toppic01.jpg") },
-    { src: require("../../assets/images/toppic02.jpg") },
-    ];
+    { src: require("../../assets/images/toppic02.jpg") }
+  ];
 }
 </script>
 
@@ -47,6 +62,9 @@ export default class CenterContent extends Vue {
   width: 100%;
 }
 
+.card-row {
+  height: 220px;
+}
 </style>
 
 
