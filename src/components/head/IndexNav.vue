@@ -6,13 +6,13 @@
     @select="handleSelect"
   >
     <li role="menuitem" class="el-menu-item item-placeholder">
-      <span class="title">XX-BLOG</span>
+      <span class="title">JMMIY-BLOG</span>
     </li>
 
     <el-menu-item index="1" @click="route('home')">首页</el-menu-item>
     <el-menu-item index="2" @click="route('timeline')">时间轴</el-menu-item>
-    <el-menu-item index="3">学无止境</el-menu-item>
-    <el-menu-item index="4">联系</el-menu-item>
+    <el-menu-item index="3" @click="coding">学无止境</el-menu-item>
+    <el-menu-item index="4" @click="coding">联系</el-menu-item>
     <search/>
   </el-menu>
 </template>
@@ -41,6 +41,10 @@ export default class IndexNav extends Vue {
 
   route(address: string):void {
     this.$router.push({name: address});
+  }
+
+  coding(): void{
+    this.$message('努力开发中...');
   }
 }
 </script>
