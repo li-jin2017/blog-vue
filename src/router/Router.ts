@@ -9,7 +9,7 @@ Vue.use(Router);
 export default new Router({
 
     routes: [
-        { path: '/', name: 'home', component: CenterContent },
-        { path: '/timeline', name: 'timeline', component: Timeline }
+        { path: '/', name: 'home', component: CenterContent, meta: {index: 0} },
+        { path: '/timeline', name: 'timeline', component: Timeline, meta: {index: 1} }
     ]
 });

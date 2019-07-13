@@ -1,27 +1,30 @@
 <template>
-  <div id="app">
-    <el-container>
-      <el-header>
-        <IndexNav/>
-      </el-header>
-      <el-main>
-        <router-view />
-      </el-main>
-      <el-footer>
-        <Footer/>
-      </el-footer>
-    </el-container>
+    <div id="app">
+        <el-container>
+            <el-header>
+                <IndexNav/>
+            </el-header>
+            <el-main :style="{minHeight: minHeight + 'px',}">
+                <transition :name="transition">
+                    <router-view />
+                </transition>
+            </el-main>
+            <el-footer>
+                <Footer/>
+            </el-footer>
+        </el-container>
 
-    <ScrollTop />
-  </div>
+        <ScrollTop />
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import IndexNav from "./components/head/IndexNav.vue";
 import CenterContent from "./components/content/CenterContent.vue";
 import Footer from "./components/footer/Footer.vue";
 import ScrollTop from "./components/utils/ScrollTop.vue";
+import { Route } from "vue-router";
 
 @Component({
     components: {
@@ -31,7 +34,33 @@ import ScrollTop from "./components/utils/ScrollTop.vue";
         ScrollTop
     }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+    private transition: string = "";
+
+    private minHeight: number = 0;
+
+    private routerIndex: number = 0;
+
+    @Watch("$route", { immediate: true })
+    watchRouter(route: Route): void {
+        if (route.meta.index > this.routerIndex) {
+            this.transition = "slide-left";
+        } else {
+            this.transition = "slide-right";
+        }
+
+        this.routerIndex = route.meta.index;
+    }
+
+    mounted(): void {
+        this.renderMinMainHeight();
+    }
+
+    renderMinMainHeight(): void {
+        let clientHeight: number = window.screen.height;
+        this.minHeight = clientHeight - 140;
+    }
+}
 </script>
 
 <style>
@@ -77,5 +106,30 @@ body::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
     background: #ededed;
     border-radius: 10px;
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+    will-change: transform;
+    transition: all 800ms;
+    position: absolute;
+}
+.slide-right-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
 }
 </style>
