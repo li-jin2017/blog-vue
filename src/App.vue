@@ -1,21 +1,21 @@
 <template>
-  <div id="app">
-    <el-container>
-      <el-header>
-        <IndexNav/>
-      </el-header>
-      <el-main :style="{minHeight: minHeight + 'px'}">
-        <transition :name="transitionType">
-          <router-view/>
-        </transition>
-      </el-main>
-      <el-footer>
-        <Footer/>
-      </el-footer>
-    </el-container>
+    <div id="app">
+        <el-container>
+            <el-header>
+                <IndexNav/>
+            </el-header>
+            <el-main :style="{minHeight: minHeight + 'px',}">
+                <transition :name="transition">
+                    <router-view />
+                </transition>
+            </el-main>
+            <el-footer>
+                <Footer/>
+            </el-footer>
+        </el-container>
 
-    <ScrollTop/>
-  </div>
+        <ScrollTop />
+    </div>
 </template>
 
 <script lang="ts">
@@ -35,33 +35,31 @@ import { Route } from "vue-router";
   }
 })
 export default class App extends Vue {
-  //上一次路由的层级
-  private oldIndex: number = 0;
-  //过度动画type
-  private transitionType: string = "";
+    private transition: string = "";
 
-  private minHeight: number = 0;
+    private minHeight: number = 0;
 
-  mounted(): void {
-    this.resizeContentMinHeight();
-  }
+    private routerIndex: number = 0;
 
-  @Watch("$route", { immediate: true })
-  private updateRouter(route: Route) {
-    if (route.meta.index > this.oldIndex) {
-      this.transitionType = "slide-left";
-    } else {
-      this.transitionType = "slide-right";
+    @Watch("$route", { immediate: true })
+    watchRouter(route: Route): void {
+        if (route.meta.index > this.routerIndex) {
+            this.transition = "slide-left";
+        } else {
+            this.transition = "slide-right";
+        }
+
+        this.routerIndex = route.meta.index;
     }
-  }
 
-  /**
-   * 设置内容区域的最小高度，避免footer在过渡动画的时候显示位置有问题
-   */
-  resizeContentMinHeight(): void {
-    let windowHeigt: number = document.body.clientHeight;
-    this.minHeight = windowHeigt - 120;
-  }
+    mounted(): void {
+        this.renderMinMainHeight();
+    }
+
+    renderMinMainHeight(): void {
+        let clientHeight: number = window.screen.height;
+        this.minHeight = clientHeight - 140;
+    }
 }
 </script>
 

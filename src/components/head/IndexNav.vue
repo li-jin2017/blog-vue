@@ -12,7 +12,8 @@
     <el-menu-item index="1" @click="route('home')">首页</el-menu-item>
     <el-menu-item index="2" @click="route('timeline')">时间轴</el-menu-item>
     <el-menu-item index="3" @click="coding">学无止境</el-menu-item>
-    <el-menu-item index="4" @click="coding">联系</el-menu-item>
+    <el-menu-item index="4" @click="coding">写博客</el-menu-item>
+    <el-menu-item index="5" @click="coding">联系</el-menu-item>
     <search/>
   </el-menu>
 </template>
@@ -55,7 +56,7 @@ export default class IndexNav extends Vue {
 }
 
 .el-menu-item {
-  margin-left: 56px !important;
+  margin-left: 38px !important;
 }
 
 .title {
