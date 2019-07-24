@@ -22,6 +22,11 @@ export default new Router({
       name: "add",
       component: () => import("@/components/edit/AddBlog.vue"),
       meta: { index: 4 }
+    },
+    {
+      path: "/study",
+      name: "study",
+      component: () => import("@/components/study/StudyGo.vue")
     }
   ]
 });
